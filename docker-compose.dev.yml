@@ -1,0 +1,68 @@
+x-logging: &default-logging
+  logging:
+    driver: json-file
+    options:
+      max-size: 100m
+
+services:
+  postgres:
+    <<: *default-logging
+    container_name: futureJudge-Postgres-Dev
+    image: postgres:16-alpine
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      POSTGRES_DB: futureJudge-dev
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGUSER: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 2s
+      timeout: 2s
+      retries: 5
+  futureJudgeDev:
+    <<: *default-logging
+    privileged: true
+    #    Uncomment the line below when using cgroup v2 and isolate v2
+    #    cgroup: host
+    depends_on:
+      postgres:
+        condition: service_healthy
+    container_name: futureJudgeDev
+    image: future-judge-api-dev
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    env_file:
+      - .env.development
+    volumes:
+      - ./Gemfile.lock:/futureJudge/Gemfile.lock
+      - ./app:/futureJudge/app
+      - ./bin:/futureJudge/bin
+      - ./config:/futureJudge/config
+      - ./db:/futureJudge/db
+      - ./lib:/futureJudge/lib
+      - ./public:/futureJudge/public
+      - ./spec:/futureJudge/spec
+      - ./storage:/futureJudge/storage
+      - ./vendor:/futureJudge/vendor
+      - ./.rspec:/futureJudge/.rspec
+      - ./.ruby-version:/futureJudge/.ruby-version
+      - ./config.ru:/futureJudge/config.ru
+      - ./LICENSE:/futureJudge/LICENSE
+      - ./test:/futureJudge/test
+    ports:
+      - "127.0.0.1:3000:3000"
+  redis:
+    container_name: futureJudge-Redis-Dev
+    image: redis:7
+    command: [
+      "bash", "-c",
+      'docker-entrypoint.sh --appendonly yes --requirepass "$$REDIS_PASSWORD"'
+    ]
+    volumes:
+      - futureJudge-Redis-Dev-data:/data
+    <<: *default-logging
+    restart: always
+volumes:
+  futureJudge-Redis-Dev-data:

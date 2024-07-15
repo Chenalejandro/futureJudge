@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+# If running the rails server then create or migrate existing database
+if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+  ./bin/rails db:prepare
+fi
+
+# This is to make isolate v2 works with cgroup v2
+mkdir /sys/fs/cgroup/leaf
+echo 1 > /sys/fs/cgroup/leaf/cgroup.procs
+echo '+cpuset +memory' > /sys/fs/cgroup/cgroup.subtree_control
+
+
+exec "${@}"
