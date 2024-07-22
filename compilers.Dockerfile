@@ -1,25 +1,25 @@
 FROM ruby:3.3.4
 
 # Check for latest version here: https://gcc.gnu.org/releases.html, https://ftpmirror.gnu.org/gcc
-ENV GCC_VERSIONS="13.3.0 14.1.0"
+ENV GCC_VERSIONS="14.1.0"
 RUN set -xe && \
     for VERSION in $GCC_VERSIONS; do \
-        curl -fSsL "https://ftpmirror.gnu.org/gcc/gcc-$VERSION/gcc-$VERSION.tar.gz" -o /tmp/gcc-$VERSION.tar.gz && \
-        mkdir /tmp/gcc-$VERSION && \
-        tar -xf /tmp/gcc-$VERSION.tar.gz -C /tmp/gcc-$VERSION --strip-components=1 && \
-        rm /tmp/gcc-$VERSION.tar.gz && \
-        cd /tmp/gcc-$VERSION && \
-        ./contrib/download_prerequisites && \
-        { rm *.tar.* || true; } && \
-        tmpdir="$(mktemp -d)" && \
-        cd "$tmpdir"; \
-        /tmp/gcc-$VERSION/configure \
-        --disable-multilib \
-        --enable-languages=c,c++ \
-        --prefix=/usr/local/gcc-$VERSION && \
-        make -j$(nproc) && \
-        make -j$(nproc) install-strip && \
-        rm -rf /tmp/*; \
+    curl -fSsL "https://ftpmirror.gnu.org/gcc/gcc-$VERSION/gcc-$VERSION.tar.gz" -o /tmp/gcc-$VERSION.tar.gz && \
+    mkdir /tmp/gcc-$VERSION && \
+    tar -xf /tmp/gcc-$VERSION.tar.gz -C /tmp/gcc-$VERSION --strip-components=1 && \
+    rm /tmp/gcc-$VERSION.tar.gz && \
+    cd /tmp/gcc-$VERSION && \
+    ./contrib/download_prerequisites && \
+    { rm *.tar.* || true; } && \
+    tmpdir="$(mktemp -d)" && \
+    cd "$tmpdir"; \
+    /tmp/gcc-$VERSION/configure \
+    --disable-multilib \
+    --enable-languages=c,c++ \
+    --prefix=/usr/local/gcc-$VERSION && \
+    make -j$(nproc) && \
+    make -j$(nproc) install-strip && \
+    rm -rf /tmp/*; \
     done
 
 # Check for latest version here: https://www.php.net/downloads
@@ -29,49 +29,49 @@ RUN set -xe && \
     apt-get install -y --no-install-recommends bison re2c && \
     rm -rf /var/lib/apt/lists/* && \
     for VERSION in $PHP_VERSIONS; do \
-        curl -fSsL "https://www.php.net/distributions/php-$VERSION.tar.gz" -o /tmp/php-$VERSION.tar.gz && \
-        mkdir /tmp/php-$VERSION && \
-        tar -xf /tmp/php-$VERSION.tar.gz -C /tmp/php-$VERSION --strip-components=1 && \
-        rm /tmp/php-$VERSION.tar.gz && \
-        cd /tmp/php-$VERSION && \
-        ./buildconf --force && \
-        ./configure \
-        --prefix=/usr/local/php-$VERSION && \
-        make -j$(nproc) && \
-        make -j$(nproc) install && \
-        rm -rf /tmp/*; \
+    curl -fSsL "https://www.php.net/distributions/php-$VERSION.tar.gz" -o /tmp/php-$VERSION.tar.gz && \
+    mkdir /tmp/php-$VERSION && \
+    tar -xf /tmp/php-$VERSION.tar.gz -C /tmp/php-$VERSION --strip-components=1 && \
+    rm /tmp/php-$VERSION.tar.gz && \
+    cd /tmp/php-$VERSION && \
+    ./buildconf --force && \
+    ./configure \
+    --prefix=/usr/local/php-$VERSION && \
+    make -j$(nproc) && \
+    make -j$(nproc) install && \
+    rm -rf /tmp/*; \
     done
 
 # Check for latest version here: https://nodejs.org/en
 ENV NODE_VERSIONS=20.15.1
 RUN set -xe && \
     for VERSION in $NODE_VERSIONS; do \
-        curl -fSsL "https://nodejs.org/dist/v$VERSION/node-v$VERSION.tar.gz" -o /tmp/node-$VERSION.tar.gz && \
-        mkdir /tmp/node-$VERSION && \
-        tar -xf /tmp/node-$VERSION.tar.gz -C /tmp/node-$VERSION --strip-components=1 && \
-        rm /tmp/node-$VERSION.tar.gz && \
-        cd /tmp/node-$VERSION && \
-        ./configure \
-        --prefix=/usr/local/node-$VERSION && \
-        make -j$(nproc) && \
-        make -j$(nproc) install && \
-        rm -rf /tmp/*; \
+    curl -fSsL "https://nodejs.org/dist/v$VERSION/node-v$VERSION.tar.gz" -o /tmp/node-$VERSION.tar.gz && \
+    mkdir /tmp/node-$VERSION && \
+    tar -xf /tmp/node-$VERSION.tar.gz -C /tmp/node-$VERSION --strip-components=1 && \
+    rm /tmp/node-$VERSION.tar.gz && \
+    cd /tmp/node-$VERSION && \
+    ./configure \
+    --prefix=/usr/local/node-$VERSION && \
+    make -j$(nproc) && \
+    make -j$(nproc) install && \
+    rm -rf /tmp/*; \
     done
 
 # Check for latest version here: https://www.python.org/downloads
 ENV PYTHON_VERSIONS=3.12.4
 RUN set -xe && \
     for VERSION in $PYTHON_VERSIONS; do \
-        curl -fSsL "https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tar.xz" -o /tmp/python-$VERSION.tar.xz && \
-        mkdir /tmp/python-$VERSION && \
-        tar -xf /tmp/python-$VERSION.tar.xz -C /tmp/python-$VERSION --strip-components=1 && \
-        rm /tmp/python-$VERSION.tar.xz && \
-        cd /tmp/python-$VERSION && \
-        ./configure \
-        --prefix=/usr/local/python-$VERSION && \
-        make -j$(nproc) && \
-        make -j$(nproc) install && \
-        rm -rf /tmp/*; \
+    curl -fSsL "https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tar.xz" -o /tmp/python-$VERSION.tar.xz && \
+    mkdir /tmp/python-$VERSION && \
+    tar -xf /tmp/python-$VERSION.tar.xz -C /tmp/python-$VERSION --strip-components=1 && \
+    rm /tmp/python-$VERSION.tar.xz && \
+    cd /tmp/python-$VERSION && \
+    ./configure \
+    --prefix=/usr/local/python-$VERSION && \
+    make -j$(nproc) && \
+    make -j$(nproc) install && \
+    rm -rf /tmp/*; \
     done
 
 RUN set -xe && \
