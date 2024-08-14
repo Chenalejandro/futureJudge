@@ -129,7 +129,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     mini_mime (1.1.5)
-    minitest (5.24.1)
+    minitest (5.25.0)
     mono_logger (1.1.2)
     msgpack (1.7.2)
     multi_json (1.15.0)
