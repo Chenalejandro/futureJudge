@@ -1,9 +1,9 @@
-FROM alejandrochen97/compilers:2.0.0
+FROM alejandrochen97/compilers:2.0.3
 WORKDIR /futureJudge
 
 ENV RAILS_ENV=development
 ENV USE_DOCS_AS_HOMEPAGE=true
-ENV JUDGE0_VERSION="2.0.0"
+ENV JUDGE0_VERSION="2.0.3"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \

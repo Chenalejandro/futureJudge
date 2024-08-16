@@ -1,7 +1,7 @@
 FROM ruby:3.3.4
 
 # Check for latest version here: https://gcc.gnu.org/releases.html, https://ftpmirror.gnu.org/gcc
-ENV GCC_VERSIONS="14.1.0"
+ENV GCC_VERSIONS="14.2.0"
 RUN set -xe && \
     for VERSION in $GCC_VERSIONS; do \
     curl -fSsL "https://ftpmirror.gnu.org/gcc/gcc-$VERSION/gcc-$VERSION.tar.gz" -o /tmp/gcc-$VERSION.tar.gz && \
@@ -23,7 +23,7 @@ RUN set -xe && \
     done
 
 # Check for latest version here: https://www.php.net/downloads
-ENV PHP_VERSIONS=8.3.9
+ENV PHP_VERSIONS=8.3.10
 RUN set -xe && \
     apt-get update && \
     apt-get install -y --no-install-recommends bison re2c && \
@@ -43,7 +43,7 @@ RUN set -xe && \
     done
 
 # Check for latest version here: https://nodejs.org/en
-ENV NODE_VERSIONS=20.15.1
+ENV NODE_VERSIONS=20.16.0
 RUN set -xe && \
     for VERSION in $NODE_VERSIONS; do \
     curl -fSsL "https://nodejs.org/dist/v$VERSION/node-v$VERSION.tar.gz" -o /tmp/node-$VERSION.tar.gz && \
@@ -59,7 +59,7 @@ RUN set -xe && \
     done
 
 # Check for latest version here: https://www.python.org/downloads
-ENV PYTHON_VERSIONS=3.12.4
+ENV PYTHON_VERSIONS=3.12.5
 RUN set -xe && \
     for VERSION in $PYTHON_VERSIONS; do \
     curl -fSsL "https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tar.xz" -o /tmp/python-$VERSION.tar.xz && \
