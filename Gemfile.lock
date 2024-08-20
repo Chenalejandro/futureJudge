@@ -115,8 +115,8 @@ GEM
     irb (1.14.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json-schema (4.3.1)
-      addressable (>= 2.8)
+    json-schema (5.0.0)
+      addressable (~> 2.8)
     jsonapi-renderer (0.2.2)
     logger (1.6.0)
     loofah (2.22.0)
@@ -129,7 +129,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     mini_mime (1.1.5)
-    minitest (5.25.0)
+    minitest (5.25.1)
     mono_logger (1.1.2)
     msgpack (1.7.2)
     multi_json (1.15.0)
@@ -261,7 +261,7 @@ DEPENDENCIES
   bootsnap
   debug
   httparty (~> 0.22.0)
-  json-schema (~> 4.3)
+  json-schema (~> 5.0)
   nanoid
   pg (~> 1.1)
   puma (>= 5.0)

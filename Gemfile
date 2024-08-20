@@ -47,7 +47,7 @@ end
 
 gem 'active_model_serializers', '~> 0.10.14'
 
-gem 'json-schema', '~> 4.3'
+gem 'json-schema', '~> 5.0'
 
 gem 'httparty', '~> 0.22.0'
 
