@@ -21,19 +21,19 @@
     },
     {
       id: 63,
-      name: "JavaScript (Node.js 20.16.0)",
+      name: "JavaScript (Node.js 20.17.0)",
       monaco_name: "javascript",
       is_archived: false,
       source_file: "script.js",
-      run_cmd: "/usr/local/node-20.16.0/bin/node script.js"
+      run_cmd: "/usr/local/node-20.17.0/bin/node script.js"
     },
     {
       id: 68,
-      name: "PHP (8.3.10)",
+      name: "PHP (8.3.11)",
       monaco_name: "php",
       is_archived: false,
       source_file: "script.php",
-      run_cmd: "/usr/local/php-8.3.10/bin/php script.php"
+      run_cmd: "/usr/local/php-8.3.11/bin/php script.php"
     },
     {
       id: 71,

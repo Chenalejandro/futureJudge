@@ -1,4 +1,4 @@
-FROM alejandrochen97/compilers:2.0.3
+FROM alejandrochen97/compilers:2.0.4
 WORKDIR /futureJudge
 
 ENV RAILS_ENV=development
@@ -7,8 +7,8 @@ ENV JUDGE0_VERSION="2.0.3"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-      libpq-dev \
-      sudo && \
+    libpq-dev \
+    sudo && \
     rm -rf /var/lib/apt/lists/*
 
 COPY Gemfile* ./

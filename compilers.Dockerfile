@@ -23,7 +23,7 @@ RUN set -xe && \
     done
 
 # Check for latest version here: https://www.php.net/downloads
-ENV PHP_VERSIONS=8.3.10
+ENV PHP_VERSIONS=8.3.11
 RUN set -xe && \
     apt-get update && \
     apt-get install -y --no-install-recommends bison re2c && \
@@ -42,8 +42,9 @@ RUN set -xe && \
     rm -rf /tmp/*; \
     done
 
+ENV LTS_NODE_VERSION=20.17.0
 # Check for latest version here: https://nodejs.org/en
-ENV NODE_VERSIONS=20.16.0
+ENV NODE_VERSIONS="${LTS_NODE_VERSION} 22.7.0"
 RUN set -xe && \
     for VERSION in $NODE_VERSIONS; do \
     curl -fSsL "https://nodejs.org/dist/v$VERSION/node-v$VERSION.tar.gz" -o /tmp/node-$VERSION.tar.gz && \
@@ -57,6 +58,8 @@ RUN set -xe && \
     make -j$(nproc) install && \
     rm -rf /tmp/*; \
     done
+
+RUN ln -s /usr/local/${LTS_NODE_VERSION}/bin/node /usr/bin/node
 
 # Check for latest version here: https://www.python.org/downloads
 ENV PYTHON_VERSIONS=3.12.5
