@@ -46,7 +46,6 @@ services:
       - ./spec:/futureJudge/spec
       - ./storage:/futureJudge/storage
       - ./vendor:/futureJudge/vendor
-      - ./.rspec:/futureJudge/.rspec
       - ./.ruby-version:/futureJudge/.ruby-version
       - ./config.ru:/futureJudge/config.ru
       - ./LICENSE:/futureJudge/LICENSE
