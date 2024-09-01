@@ -49,8 +49,7 @@ gem 'active_model_serializers', '~> 0.10.14'
 
 gem 'redis', '~> 5.2'
 
-gem 'resque'
-
 gem 'svix'
 
 gem 'nanoid'
+gem "solid_queue"

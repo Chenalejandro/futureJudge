@@ -18,7 +18,7 @@ services:
     volumes:
       - futureJudge-Postgres-Prod-data:/var/lib/postgresql/data/
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready" ]
+      test: ["CMD-SHELL", "pg_isready"]
       interval: 2s
       timeout: 2s
       retries: 5
@@ -37,31 +37,5 @@ services:
       - .env.production
     ports:
       - "127.0.0.1:3100:3000"
-  worker:
-    <<: *default-logging
-    privileged: true
-    command: ["./scripts/worker"]
-    container_name: futureJudgeWorkerProd
-    image: future-judge-worker-prod
-    build:
-      context: .
-      dockerfile: prod.Dockerfile
-    env_file:
-      - .env.production
-    ports:
-      - "127.0.0.1:4100:3000"
-  redis:
-    container_name: futureJudge-Redis-Prod
-    image: redis:7
-    command: [
-      "bash", "-c",
-      'docker-entrypoint.sh --appendonly yes --requirepass "$$REDIS_PASSWORD"'
-    ]
-    env_file: .env.production
-    volumes:
-      - futureJudge-Redis-Prod-data:/data
-    <<: *default-logging
-    restart: always
 volumes:
   futureJudge-Postgres-Prod-data:
-  futureJudge-Redis-Prod-data:

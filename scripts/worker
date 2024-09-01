@@ -1,3 +1,0 @@
-#!/bin/bash
-
-COUNT=${COUNT:-$(( $(nproc) * 2 ))} QUEUE=* bundle exec rake resque:workers

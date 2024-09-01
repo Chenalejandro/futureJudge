@@ -16,7 +16,7 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
       PGUSER: postgres
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready" ]
+      test: ["CMD-SHELL", "pg_isready"]
       interval: 2s
       timeout: 2s
       retries: 5
@@ -53,16 +53,3 @@ services:
       - ./test:/futureJudge/test
     ports:
       - "127.0.0.1:2000:3000"
-  redis:
-    container_name: futureJudge-Redis-Dev
-    image: redis:7
-    command: [
-      "bash", "-c",
-      'docker-entrypoint.sh --appendonly yes --requirepass "$$REDIS_PASSWORD"'
-    ]
-    volumes:
-      - futureJudge-Redis-Dev-data:/data
-    <<: *default-logging
-    restart: always
-volumes:
-  futureJudge-Redis-Dev-data:
