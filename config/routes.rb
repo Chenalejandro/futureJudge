@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :languages, only: [:index, :show]
 
   resources :submissions, only: [:show, :create], param: :public_id
+
+  mount MissionControl::Jobs::Engine, at: "/jobs"
 end

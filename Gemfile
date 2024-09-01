@@ -73,3 +73,4 @@ gem 'svix'
 
 gem 'nanoid'
 gem "solid_queue"
+gem "mission_control-jobs"
