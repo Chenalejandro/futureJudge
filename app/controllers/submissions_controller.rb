@@ -1,4 +1,4 @@
-class SubmissionsController < TokenauthenticationController
+class SubmissionsController < ApplicationController
 
   def show
     public_id = params[:public_id]
