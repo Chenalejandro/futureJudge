@@ -21,6 +21,9 @@ ActiveRecord::Base.transaction do
       source_file: language[:source_file],
       compile_cmd: language[:compile_cmd],
       run_cmd: language[:run_cmd],
+      major: language[:major],
+      minor: language[:minor],
+      patch: language[:patch]
       )
   end
 end

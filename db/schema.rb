@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_01_143259) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_03_001318) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_01_143259) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "monaco_name"
+    t.integer "major", null: false
+    t.integer "minor", null: false
+    t.integer "patch", null: false
   end
 
   create_table "solid_queue_blocked_executions", force: :cascade do |t|
