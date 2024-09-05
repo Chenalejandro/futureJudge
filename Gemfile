@@ -70,5 +70,5 @@ gem 'active_model_serializers', '~> 0.10.14'
 gem 'svix'
 
 gem 'nanoid'
-gem "solid_queue"
+gem "solid_queue", "~> 0.8.1"
 gem "mission_control-jobs"
