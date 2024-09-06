@@ -20,6 +20,21 @@ services:
       interval: 2s
       timeout: 2s
       retries: 5
+  solidQueuePostgres:
+    <<: *default-logging
+    container_name: solidQueue-Postgres-Dev
+    image: postgres:16-alpine
+    ports:
+      - "127.0.0.1:2002:5432"
+    environment:
+      POSTGRES_DB: queue
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGUSER: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 2s
+      timeout: 2s
+      retries: 5
   futureJudgeDev:
     <<: *default-logging
     privileged: true
