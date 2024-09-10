@@ -1,4 +1,4 @@
-FROM alejandrochen97/compilers:2.0.4
+FROM alejandrochen97/compilers:2.0.5
 WORKDIR /futureJudge
 
 ENV RAILS_ENV=development

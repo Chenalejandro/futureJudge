@@ -1,4 +1,4 @@
-FROM ruby:3.3.4
+FROM ruby:3.3.5
 
 # Check for latest version here: https://gcc.gnu.org/releases.html, https://ftpmirror.gnu.org/gcc
 ENV GCC_VERSIONS="14.2.0"
@@ -44,7 +44,7 @@ RUN set -xe && \
 
 ENV LTS_NODE_VERSION=20.17.0
 # Check for latest version here: https://nodejs.org/en
-ENV NODE_VERSIONS="${LTS_NODE_VERSION} 22.7.0"
+ENV NODE_VERSIONS="${LTS_NODE_VERSION} 22.8.0"
 RUN set -xe && \
     for VERSION in $NODE_VERSIONS; do \
     curl -fSsL "https://nodejs.org/dist/v$VERSION/node-v$VERSION.tar.gz" -o /tmp/node-$VERSION.tar.gz && \
@@ -62,7 +62,7 @@ RUN set -xe && \
 RUN ln -s /usr/local/${LTS_NODE_VERSION}/bin/node /usr/bin/node
 
 # Check for latest version here: https://www.python.org/downloads
-ENV PYTHON_VERSIONS=3.12.5
+ENV PYTHON_VERSIONS=3.12.6
 RUN set -xe && \
     for VERSION in $PYTHON_VERSIONS; do \
     curl -fSsL "https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tar.xz" -o /tmp/python-$VERSION.tar.xz && \
