@@ -91,7 +91,7 @@ RUN set -xe && \
     rm -rf /var/lib/apt/lists/* && \
     git clone https://gitlab.com/ChenAlejandro/isolate-docker.git /tmp/isolate && \
     cd /tmp/isolate && \
-    git checkout 1286db94090716562b4efb4c6094aa7076c2e3f5 && \
+    git checkout c0cf4414d198f71ffc127149d235ea3dbc11b179 && \
     make -j$(nproc) install && \
     rm -rf /tmp/*
 
