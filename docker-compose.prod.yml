@@ -15,8 +15,21 @@ services:
       POSTGRES_DB: futureJudge-prod
       POSTGRES_HOST_AUTH_METHOD: trust
       PGUSER: postgres
-    volumes:
-      - futureJudge-Postgres-Prod-data:/var/lib/postgresql/data/
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 2s
+      timeout: 2s
+      retries: 5
+  solidQueuePostgres:
+    <<: *default-logging
+    container_name: solidQueue-Postgres-Prod
+    image: postgres:16-alpine
+    ports:
+      - "127.0.0.1:6100:5432"
+    environment:
+      POSTGRES_DB: futureJudge-prod
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGUSER: postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 2s
@@ -37,5 +50,3 @@ services:
       - .env.production
     ports:
       - "127.0.0.1:3100:3000"
-volumes:
-  futureJudge-Postgres-Prod-data:

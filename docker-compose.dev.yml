@@ -44,7 +44,7 @@ services:
       postgres:
         condition: service_healthy
     container_name: futureJudgeDev
-    image: future-judge-api-dev
+    image: future-judge-dev
     build:
       context: .
       dockerfile: dev.Dockerfile
