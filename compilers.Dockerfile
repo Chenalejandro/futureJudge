@@ -44,7 +44,7 @@ RUN set -xe && \
 
 ENV LTS_NODE_VERSION=20.17.0
 # Check for latest version here: https://nodejs.org/en
-ENV NODE_VERSIONS="${LTS_NODE_VERSION} 22.8.0"
+ENV NODE_VERSIONS="${LTS_NODE_VERSION}"
 RUN set -xe && \
     for VERSION in $NODE_VERSIONS; do \
     curl -fSsL "https://nodejs.org/dist/v$VERSION/node-v$VERSION.tar.gz" -o /tmp/node-$VERSION.tar.gz && \
