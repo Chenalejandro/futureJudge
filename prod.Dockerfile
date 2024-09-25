@@ -1,6 +1,6 @@
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.3.5
-FROM alejandrochen97/compilers:2.0.6 as base
+FROM alejandrochen97/compilers:2.0.6 AS base
 
 ENV USE_DOCS_AS_HOMEPAGE=true
 ENV JUDGE0_VERSION="2.0.0"
@@ -16,7 +16,7 @@ ENV RAILS_ENV="production" \
 
 
 # Throw-away build stage to reduce size of final image
-FROM base as build
+FROM base AS build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
