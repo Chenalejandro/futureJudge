@@ -1,0 +1,7 @@
+{
+  "middle_click_paste": false,
+  "features": {
+    "inline_completion_provider": "supermaven"
+  },
+  "format_on_save": "off"
+}
