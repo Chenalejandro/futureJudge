@@ -15,26 +15,26 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_03_001318) do
   enable_extension "plpgsql"
 
   create_table "languages", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "compile_cmd"
-    t.string "run_cmd"
-    t.string "source_file"
-    t.boolean "is_archived"
+    t.string "run_cmd", null: false
+    t.string "source_file", null: false
+    t.boolean "is_archived", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "monaco_name"
+    t.string "monaco_name", null: false
     t.integer "major", null: false
     t.integer "minor", null: false
     t.integer "patch", null: false
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.text "source_code"
+    t.text "source_code", null: false
     t.bigint "language_id", null: false
     t.text "stdin"
     t.text "stdout"
     t.text "result"
-    t.integer "status"
+    t.integer "status", null: false
     t.datetime "finished_at"
     t.decimal "time"
     t.integer "memory"
@@ -65,10 +65,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_03_001318) do
     t.string "execution_host"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "public_id", limit: 12
+    t.string "public_id", limit: 12, null: false
     t.index ["language_id"], name: "index_submissions_on_language_id"
     t.index ["public_id"], name: "index_submissions_on_public_id", unique: true
   end
 
-  add_foreign_key "submissions", "languages"
+  add_foreign_key "submissions", "languages", column: "language_id"
 end
