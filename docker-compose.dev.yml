@@ -8,7 +8,7 @@ services:
   postgres:
     <<: *default-logging
     container_name: futureJudge-Postgres-Dev
-    image: postgres:16-alpine
+    image: postgres:17-alpine
     ports:
       - "127.0.0.1:2001:5432"
     environment:
@@ -23,7 +23,7 @@ services:
   solidQueuePostgres:
     <<: *default-logging
     container_name: solidQueue-Postgres-Dev
-    image: postgres:16-alpine
+    image: postgres:17-alpine
     ports:
       - "127.0.0.1:2002:5432"
     environment:
