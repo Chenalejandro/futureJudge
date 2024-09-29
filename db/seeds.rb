@@ -11,9 +11,8 @@
 require_relative 'languages/active'
 
 ActiveRecord::Base.transaction do
-  Language.unscoped.delete_all
   @languages.each_with_index do |language, index|
-    Language.create(
+    Language.upsert({
       id: language[:id],
       name: language[:name],
       monaco_name: language[:monaco_name],
@@ -24,6 +23,9 @@ ActiveRecord::Base.transaction do
       major: language[:major],
       minor: language[:minor],
       patch: language[:patch]
+      },
+      update_only: [:run_cmd, :compile_cmd, :name, :major, :minor, :patch]
+
       )
   end
 end
