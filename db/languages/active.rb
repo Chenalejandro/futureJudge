@@ -38,11 +38,11 @@
       name: "PHP",
       major: 8,
       minor: 3,
-      patch: 11,
+      patch: 12,
       monaco_name: "php",
       is_archived: false,
       source_file: "script.php",
-      run_cmd: "/usr/local/php-8.3.11/bin/php script.php"
+      run_cmd: "/usr/local/php-8.3.12/bin/php script.php"
     },
     {
       id: 71,

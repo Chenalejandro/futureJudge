@@ -23,7 +23,7 @@ RUN set -xe && \
     done
 
 # Check for latest version here: https://www.php.net/downloads
-ENV PHP_VERSIONS=8.3.11
+ENV PHP_VERSIONS=8.3.12
 RUN set -xe && \
     apt-get update && \
     apt-get install -y --no-install-recommends bison re2c && \
