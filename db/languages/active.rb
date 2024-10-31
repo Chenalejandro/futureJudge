@@ -26,33 +26,33 @@
       id: 63,
       name: "JavaScript",
       major: 20,
-      minor: 17,
+      minor: 18,
       patch: 0,
       monaco_name: "javascript",
       is_archived: false,
       source_file: "script.js",
-      run_cmd: "/usr/local/node-20.17.0/bin/node script.js"
+      run_cmd: "/usr/local/node-20.18.0/bin/node script.js"
     },
     {
       id: 68,
       name: "PHP",
       major: 8,
       minor: 3,
-      patch: 12,
+      patch: 13,
       monaco_name: "php",
       is_archived: false,
       source_file: "script.php",
-      run_cmd: "/usr/local/php-8.3.12/bin/php script.php"
+      run_cmd: "/usr/local/php-8.3.13/bin/php script.php"
     },
     {
       id: 71,
       name: "Python",
       major: 3,
-      minor: 12,
-      patch: 6,
+      minor: 13,
+      patch: 0,
       monaco_name: "python",
       is_archived: false,
       source_file: "script.py",
-      run_cmd: "/usr/local/python-3.12.6/bin/python3 script.py"
+      run_cmd: "/usr/local/python-3.13.0/bin/python3 script.py"
     }
   ]
