@@ -1,4 +1,4 @@
-FROM ruby:3.3.5
+FROM ruby:3.3.6
 
 # Check for latest version here: https://gcc.gnu.org/releases.html, https://ftpmirror.gnu.org/gcc
 ENV GCC_VERSIONS="14.2.0"
