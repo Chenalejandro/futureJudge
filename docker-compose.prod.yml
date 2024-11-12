@@ -35,6 +35,36 @@ services:
       interval: 2s
       timeout: 2s
       retries: 5
+  solidCachePostgres:
+    <<: *default-logging
+    container_name: solidCache-Postgres-Prod
+    image: postgres:17-alpine
+    ports:
+      - "127.0.0.1:6200:5432"
+    environment:
+      POSTGRES_DB: futureJudge-prod
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGUSER: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 2s
+      timeout: 2s
+      retries: 5
+  solidCablePostgres:
+    <<: *default-logging
+    container_name: solidCable-Postgres-Prod
+    image: postgres:17-alpine
+    ports:
+      - "127.0.0.1:6300:5432"
+    environment:
+      POSTGRES_DB: futureJudge-prod
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGUSER: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 2s
+      timeout: 2s
+      retries: 5
   futureJudgeProd:
     <<: *default-logging
     privileged: true

@@ -35,6 +35,36 @@ services:
       interval: 2s
       timeout: 2s
       retries: 5
+  solidCachePostgres:
+    <<: *default-logging
+    container_name: solidCache-Postgres-Dev
+    image: postgres:17-alpine
+    ports:
+      - "127.0.0.1:2003:5432"
+    environment:
+      POSTGRES_DB: cache
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGUSER: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 2s
+      timeout: 2s
+      retries: 5
+  solidCablePostgres:
+    <<: *default-logging
+    container_name: solidCable-Postgres-Dev
+    image: postgres:17-alpine
+    ports:
+      - "127.0.0.1:2004:5432"
+    environment:
+      POSTGRES_DB: cable
+      POSTGRES_HOST_AUTH_METHOD: trust
+      PGUSER: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 2s
+      timeout: 2s
+      retries: 5
   futureJudgeDev:
     <<: *default-logging
     privileged: true

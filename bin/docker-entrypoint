@@ -1,12 +1,13 @@
 #!/bin/bash -e
 
 # Enable jemalloc for reduced memory usage and latency.
-if [ -z "${LD_PRELOAD+x}" ] && [ -f /usr/lib/*/libjemalloc.so.2 ]; then
-  export LD_PRELOAD="$(echo /usr/lib/*/libjemalloc.so.2)"
+if [ -z "${LD_PRELOAD+x}" ]; then
+    LD_PRELOAD=$(find /usr/lib -name libjemalloc.so.2 -print -quit)
+    export LD_PRELOAD
 fi
 
 # If running the rails server then create or migrate existing database
-if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+if [ "${@: -4:1}" == "./bin/rails" ] && [ "${@: -3:1}" == "server" ]; then
   ./bin/rails db:prepare
 fi
 
@@ -14,6 +15,5 @@ fi
 mkdir /sys/fs/cgroup/leaf
 echo 1 > /sys/fs/cgroup/leaf/cgroup.procs
 echo '+cpuset +memory' > /sys/fs/cgroup/cgroup.subtree_control
-
 
 exec "${@}"

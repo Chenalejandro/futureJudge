@@ -28,7 +28,22 @@ default: &default
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
     url: <%= ENV["SOLIDQUEUE_DATABASE_URL"] %>
     migrations_paths: db/queue_migrate
-
+  cache:
+    adapter: postgresql
+    encoding: unicode
+    # For details on connection pooling, see Rails configuration guide
+    # https://guides.rubyonrails.org/configuring.html#database-pooling
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    url: <%= ENV["SOLIDCACHE_DATABASE_URL"] %>
+    migrations_paths: db/cache_migrate
+  cable:
+    adapter: postgresql
+    encoding: unicode
+    # For details on connection pooling, see Rails configuration guide
+    # https://guides.rubyonrails.org/configuring.html#database-pooling
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    url: <%= ENV["SOLIDCABLE_DATABASE_URL"] %>
+    migrations_paths: db/cable_migrate
 development:
   <<: *default
 

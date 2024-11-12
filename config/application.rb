@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module FutureJudge
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.2
+    config.load_defaults 8.0
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -29,7 +29,7 @@ module FutureJudge
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    # Config added by chenalejandro
+    # Added by Chen Alejandro
     config.active_job.queue_adapter = :solid_queue
     config.solid_queue.connects_to = { database: { writing: :queue } }
     config.mission_control.jobs.base_controller_class = "AdminController"
