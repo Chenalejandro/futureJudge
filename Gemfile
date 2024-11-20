@@ -51,5 +51,6 @@ gem 'active_model_serializers', git: 'https://github.com/Chenalejandro/acitve_mo
 gem 'svix'
 
 gem 'nanoid'
-gem "mission_control-jobs", "<= 0.3.2"
+gem "mission_control-jobs"
+gem "propshaft"
 gem "typhoeus"
