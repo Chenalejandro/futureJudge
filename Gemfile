@@ -46,7 +46,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 
-gem 'active_model_serializers', git: 'https://github.com/Chenalejandro/acitve_model_serializers.git'
+gem 'active_model_serializers'
 
 gem 'svix'
 
