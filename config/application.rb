@@ -32,6 +32,5 @@ module FutureJudge
     # Added by Chen Alejandro
     config.active_job.queue_adapter = :solid_queue
     config.solid_queue.connects_to = { database: { writing: :queue } }
-    config.mission_control.jobs.base_controller_class = "AdminController"
   end
 end

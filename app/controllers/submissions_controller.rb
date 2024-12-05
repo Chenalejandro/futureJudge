@@ -1,4 +1,4 @@
-class SubmissionsController < ApplicationController
+class SubmissionsController < AuthenticationController
 
   def show
     public_id = params[:public_id]

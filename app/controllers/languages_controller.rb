@@ -1,4 +1,4 @@
-class LanguagesController < ApplicationController
+class LanguagesController < AuthenticationController
   def index
     render json: Language.all, each_serializer: LanguageSerializer, fields: [:id, :name, :monaco_name, :major, :minor, :patch]
   end
