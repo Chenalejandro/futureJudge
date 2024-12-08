@@ -1,9 +1,9 @@
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.3.6
-FROM alejandrochen97/compilers:4.0.0 AS base
+FROM alejandrochen97/compilers:4.0.1 AS base
 
 ENV USE_DOCS_AS_HOMEPAGE=true
-ENV JUDGE0_VERSION="5.0.1"
+ENV JUDGE0_VERSION="5.0.2"
 
 # Rails app lives here
 WORKDIR /rails

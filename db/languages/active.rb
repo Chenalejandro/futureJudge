@@ -26,12 +26,12 @@
       id: 63,
       name: "JavaScript",
       major: 22,
-      minor: 11,
+      minor: 12,
       patch: 0,
       monaco_name: "javascript",
       is_archived: false,
       source_file: "script.js",
-      run_cmd: "/usr/local/node-22.11.0/bin/node script.js"
+      run_cmd: "/usr/local/node-22.12.0/bin/node script.js"
     },
     {
       id: 68,
@@ -49,10 +49,10 @@
       name: "Python",
       major: 3,
       minor: 13,
-      patch: 0,
+      patch: 1,
       monaco_name: "python",
       is_archived: false,
       source_file: "script.py",
-      run_cmd: "/usr/local/python-3.13.0/bin/python3 script.py"
+      run_cmd: "/usr/local/python-3.13.1/bin/python3 script.py"
     }
   ]
