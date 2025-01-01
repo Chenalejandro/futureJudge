@@ -1,4 +1,4 @@
-FROM ruby:3.3.6
+FROM ruby:3.4.1
 
 # Check for latest version here: https://gcc.gnu.org/releases.html, https://ftpmirror.gnu.org/gcc
 ENV GCC_VERSIONS="14.2.0"
@@ -23,7 +23,7 @@ RUN set -xe && \
     done
 
 # Check for latest version here: https://www.php.net/downloads
-ENV PHP_VERSIONS=8.4.1
+ENV PHP_VERSIONS=8.4.2
 RUN set -xe && \
     apt-get update && \
     apt-get install -y --no-install-recommends bison re2c && \

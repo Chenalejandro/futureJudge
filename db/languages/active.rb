@@ -38,7 +38,7 @@
       name: "PHP",
       major: 8,
       minor: 4,
-      patch: 1,
+      patch: 2,
       monaco_name: "php",
       is_archived: false,
       source_file: "script.php",
