@@ -3,7 +3,7 @@ ARG RUBY_VERSION=3.4.1
 FROM alejandrochen97/compilers:4.1.0 AS base
 
 ENV USE_DOCS_AS_HOMEPAGE=true
-ENV JUDGE0_VERSION="5.1.1"
+ENV JUDGE0_VERSION="5.1.2"
 
 # Rails app lives here
 WORKDIR /rails
