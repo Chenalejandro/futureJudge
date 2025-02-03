@@ -31,7 +31,7 @@
       monaco_name: "javascript",
       is_archived: false,
       source_file: "script.js",
-      run_cmd: "/usr/local/node-22.12.0/bin/node script.js"
+      run_cmd: "/usr/local/node-22.13.1/bin/node script.js"
     },
     {
       id: 68,
@@ -42,7 +42,7 @@
       monaco_name: "php",
       is_archived: false,
       source_file: "script.php",
-      run_cmd: "/usr/local/php-8.4.1/bin/php script.php"
+      run_cmd: "/usr/local/php-8.4.3/bin/php script.php"
     },
     {
       id: 71,

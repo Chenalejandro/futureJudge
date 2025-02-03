@@ -5,7 +5,7 @@ x-logging: &default-logging
       max-size: 100m
 
 services:
-  postgres:
+  postgresDev:
     <<: *default-logging
     container_name: futureJudge-Postgres-Dev
     image: postgres:17-alpine
@@ -20,7 +20,7 @@ services:
       interval: 2s
       timeout: 2s
       retries: 5
-  solidQueuePostgres:
+  solidQueuePostgresDev:
     <<: *default-logging
     container_name: solidQueue-Postgres-Dev
     image: postgres:17-alpine
@@ -35,7 +35,7 @@ services:
       interval: 2s
       timeout: 2s
       retries: 5
-  solidCachePostgres:
+  solidCachePostgresDev:
     <<: *default-logging
     container_name: solidCache-Postgres-Dev
     image: postgres:17-alpine
@@ -50,7 +50,7 @@ services:
       interval: 2s
       timeout: 2s
       retries: 5
-  solidCablePostgres:
+  solidCablePostgresDev:
     <<: *default-logging
     container_name: solidCable-Postgres-Dev
     image: postgres:17-alpine
@@ -71,7 +71,7 @@ services:
     #    Uncomment the line below when using cgroup v2 and isolate v2
     #    cgroup: host
     depends_on:
-      postgres:
+      postgresDev:
         condition: service_healthy
     container_name: futureJudgeDev
     image: future-judge-dev
@@ -97,3 +97,47 @@ services:
       - ./test:/futureJudge/test
     ports:
       - "127.0.0.1:2000:3000"
+
+  # ================= svix =================
+
+  svix-dbDev:
+    container_name: svix-db-dev
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: PASSWORD-PLACEHOLDER--KsoIMcchtp
+      POSTGRES_DB: svix
+    volumes:
+      - svix-postgres-dev-data:/var/lib/postgresql/data
+
+  svix-redisDev:
+    container_name: svix-redis-dev
+    image: docker.io/redis:7-alpine
+    command: --save 60 500 --appendonly yes --appendfsync everysec --requirepass PASSWORD-PLACEHOLDER--oVn8GSD6b9
+    volumes:
+      - svix-redis-dev-data:/data
+
+  svix-serverDev:
+    container_name: svix-server-dev
+    image: svix/svix-server
+    environment:
+      WAIT_FOR: 'true'
+      SVIX_REDIS_DSN: redis://:PASSWORD-PLACEHOLDER--oVn8GSD6b9@svix-redis-dev:6379
+      SVIX_DB_DSN: postgres://postgres:PASSWORD-PLACEHOLDER--KsoIMcchtp@svix-db-dev:5432/svix
+      SVIX_CACHE_TYPE: memory
+      SVIX_JWT_SECRET: secret
+      SVIX_LOG_LEVEL: trace
+      SVIX_QUEUE_TYPE: redis
+      SVIX_WHITELIST_SUBNETS: "[127.0.0.1/32, 172.17.0.0/16]"
+    ports:
+      - 2005:8071
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+    - svix-redisDev
+    - svix-dbDev
+
+
+volumes:
+  svix-redis-dev-data:
+  svix-postgres-dev-data:

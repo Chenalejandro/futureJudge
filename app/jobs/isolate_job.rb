@@ -3,21 +3,49 @@ class IsolateJob < ApplicationJob
 
   after_perform do |job|
     submission = job.arguments.first
-    svix = Svix::Client.new(ENV['SVIX_AUTH_TOKEN'])
-    message_out = svix.message.create(ENV['SVIX_SOLID_CODE_APP_ID'], Svix::MessageIn.new({
-      "event_type": "submission.result",
-      "payload": {
-        result: Base64Service.encode(submission.result),
-        status: submission.status,
-        stderr: Base64Service.encode(submission.stderr),
-        stdout: Base64Service.encode(submission.stdout),
-        public_id: submission.public_id,
-        message: Base64Service.encode(submission.message),
-        compile_output: Base64Service.encode(submission.compile_output),
-        memory: submission.memory,
-        time: submission.time
-      }
-    }))
+    if ENV['TEST_ENV'] == 'true'
+      svix = Svix::Client.new(ENV['SVIX_API_KEY'], Svix::SvixOptions.new(false, ENV['SVIX_SERVER_URL']))
+      svix.application.get_or_create(Svix::ApplicationIn.new({
+        "name": ENV['SVIX_SOLID_CODE_APP_NAME'],
+        "rate_limit": nil,
+        "uid": ENV['SVIX_SOLID_CODE_APP_ID']
+      }))
+      endpoint = svix.endpoint.create(ENV['SVIX_SOLID_CODE_APP_ID'], Svix::EndpointIn.new({
+        "url": "http://host.docker.internal:3000/api/webhooks/submission",
+        "description": "Solid Code submission result"
+      }))
+      message_out = svix.message.create(ENV['SVIX_SOLID_CODE_APP_ID'], Svix::MessageIn.new({
+        "event_type": "submission.result",
+        "payload": {
+          result: Base64Service.encode(submission.result),
+          status: submission.status,
+          stderr: Base64Service.encode(submission.stderr),
+          stdout: Base64Service.encode(submission.stdout),
+          public_id: submission.public_id,
+          message: Base64Service.encode(submission.message),
+          compile_output: Base64Service.encode(submission.compile_output),
+          memory: submission.memory,
+          time: submission.time
+        }
+      }))
+    else
+      svix = Svix::Client.new(ENV['SVIX_AUTH_TOKEN'])
+      message_out = svix.message.create(ENV['SVIX_SOLID_CODE_APP_ID'], Svix::MessageIn.new({
+        "event_type": "submission.result",
+        "payload": {
+          result: Base64Service.encode(submission.result),
+          status: submission.status,
+          stderr: Base64Service.encode(submission.stderr),
+          stdout: Base64Service.encode(submission.stdout),
+          public_id: submission.public_id,
+          message: Base64Service.encode(submission.message),
+          compile_output: Base64Service.encode(submission.compile_output),
+          memory: submission.memory,
+          time: submission.time
+        }
+      }))
+    end
+
   end
 
   STDIN_FILE_NAME = "stdin.txt"
