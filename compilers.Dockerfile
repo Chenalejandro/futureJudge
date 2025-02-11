@@ -62,7 +62,7 @@ RUN set -xe && \
 RUN ln -s /usr/local/${LTS_NODE_VERSION}/bin/node /usr/bin/node
 
 # Check for latest version here: https://www.python.org/downloads
-ENV PYTHON_VERSIONS=3.13.1
+ENV PYTHON_VERSIONS=3.13.2
 RUN set -xe && \
     for VERSION in $PYTHON_VERSIONS; do \
     curl -fSsL "https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tar.xz" -o /tmp/python-$VERSION.tar.xz && \

@@ -1,6 +1,6 @@
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.4.1
-FROM alejandrochen97/compilers:4.1.1 AS base
+FROM alejandrochen97/compilers:4.2.0 AS base
 
 ENV USE_DOCS_AS_HOMEPAGE=true
 ENV JUDGE0_VERSION="5.1.4"

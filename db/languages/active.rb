@@ -49,10 +49,10 @@
       name: "Python",
       major: 3,
       minor: 13,
-      patch: 1,
+      patch: 2,
       monaco_name: "python",
       is_archived: false,
       source_file: "script.py",
-      run_cmd: "/usr/local/python-3.13.1/bin/python3 script.py"
+      run_cmd: "/usr/local/python-3.13.2/bin/python3 script.py"
     }
   ]
