@@ -1,9 +1,9 @@
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.4.1
-FROM alejandrochen97/compilers:4.2.0 AS base
+FROM alejandrochen97/compilers:5.0.0 AS base
 
 ENV USE_DOCS_AS_HOMEPAGE=true
-ENV JUDGE0_VERSION="5.1.4"
+ENV JUDGE0_VERSION="6.0.0"
 
 # Rails app lives here
 WORKDIR /rails
@@ -20,7 +20,7 @@ FROM base AS build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config libyaml-dev
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -54,7 +54,7 @@ COPY --from=build /rails /rails
 #    chown -R rails:rails db log storage tmp
 #USER rails:rails
 
-RUN useradd -u 1000 -m -r judge0 && \
+RUN useradd -u 1001 -m -r judge0 && \
     chown -R judge0:judge0 db log storage tmp && \
     echo "judge0 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers && \
     chown judge0: /rails/tmp/
