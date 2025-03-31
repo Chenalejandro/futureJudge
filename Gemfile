@@ -48,7 +48,7 @@ end
 
 gem 'active_model_serializers'
 
-gem 'svix', ">= 1.60", "< 1.61"
+gem 'svix'
 
 gem 'nanoid'
 gem "mission_control-jobs"
