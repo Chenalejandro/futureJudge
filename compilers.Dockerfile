@@ -1,4 +1,4 @@
-FROM php:8.4.5-cli-bookworm
+FROM php:8.4.6-cli-bookworm
 
 ########################################## ---- Ruby ---- ##########################################
 
@@ -17,10 +17,10 @@ RUN set -eux; \
 
 ENV LANG C.UTF-8
 
-# https://www.ruby-lang.org/en/news/2025/02/14/ruby-3-4-2-released/
-ENV RUBY_VERSION 3.4.2
-ENV RUBY_DOWNLOAD_URL https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.2.tar.xz
-ENV RUBY_DOWNLOAD_SHA256 ebf1c2eb58f5da17c23e965d658dd7e6202c5c50f5179154c5574452bef4b3e0
+# https://www.ruby-lang.org/en/news/2025/04/14/ruby-3-4-3-released/
+ENV RUBY_VERSION 3.4.3
+ENV RUBY_DOWNLOAD_URL https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.3.tar.xz
+ENV RUBY_DOWNLOAD_SHA256 174dcd8c516694f833fd3c93ea227fa6c3321464577a3882a6fc7e4fe20237fd
 
 # some of ruby's build scripts are written in ruby
 #   we purge system ruby later to make sure our final image uses what we just built
@@ -145,8 +145,8 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 
 ENV GPG_KEY 7169605F62C751356D054A26A821E680E5FA6305
-ENV PYTHON_VERSION 3.13.2
-ENV PYTHON_SHA256 d984bcc57cd67caab26f7def42e523b1c015bbc5dc07836cf4f0b63fa159eb56
+ENV PYTHON_VERSION 3.13.3
+ENV PYTHON_SHA256 40f868bcbdeb8149a3149580bb9bfd407b3321cd48f0be631af955ac92c0e041
 
 RUN set -eux; \
 	\
